@@ -4,10 +4,12 @@ import MainPage from "../components/MainPage";
 export const DashboardRoutes = () => {
   return (
     <>
-      <Routes>
-        <Route path="/" element={<MainPage />} />
-        <Route path="*" element={<Navigate to="/" />} />
-      </Routes>
+      <div>
+        <Routes>
+          <Route path="/" element={<MainPage />} />
+          <Route path="*" element={<Navigate to="/" />} />
+        </Routes>
+      </div>
     </>
   );
 };

@@ -1,50 +1,75 @@
-import { Container } from "react-bootstrap";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import * as Yup from "yup";
+import { useSelector, useDispatch } from "react-redux";
+import { loginEmailPassword, logout } from "../../app/slices/authSlice";
+import { Link } from "react-router-dom";
+import * as yup from "yup";
 
 const Login = () => {
+  const auth = useSelector((state) => state.auth.user);
+  const dispatch = useDispatch();
+
+  console.log("estado:", auth);
   return (
-    <Container className="d-flex justify-content-center">
+    <div>
       <Formik
         initialValues={{
-          name: "",
           email: "",
+          password: "",
         }}
-        validationSchema={Yup.object({
-          name: Yup.string()
-            .max(15, "Must be 15 characters or less")
-            .required("Required"),
-          email: Yup.string()
-            .email("Invalid email address")
-            .required("Required"),
+        validationSchema={yup.object().shape({
+          email: yup.string().required("Email Required"),
+          password: yup.string().required("Password Required"),
         })}
-        onSubmit={(values, { resetForm }) => {
-          console.log(values);
-          console.log("Formulario enviado");
+        onSubmit={({ email, password }, { resetForm }) => {
+          dispatch(loginEmailPassword(email, password));
           resetForm();
         }}
       >
         {() => (
           <Form>
             <div>
-              <Field type="text" id="name" name="name" placeholder="name" />
+              <label>
+                <Field
+                  className="form-control"
+                  type="text"
+                  id="email"
+                  name="email"
+                  placeholder="Email"
+                />
+              </label>
               <ErrorMessage
-                name="name"
-                component={(errors) => <p>{errors.children}</p>}
+                name="email"
+                component={(errors) => (
+                  <p className="fs-6 text-danger">{errors.children}</p>
+                )}
               />
             </div>
             <div>
-              <Field type="text" id="email" name="email" placeholder="email" />
+              <label>
+                <Field
+                  className="form-control"
+                  type="text"
+                  id="password"
+                  name="password"
+                  placeholder="Password"
+                />
+              </label>
               <ErrorMessage
-                name="email"
-                component={(errors) => <p>{errors.children}</p>}
+                name="password"
+                component={(errors) => (
+                  <p className="fs-6 text-danger">{errors.children}</p>
+                )}
               />
             </div>
             <button type="submit">Submit</button>
           </Form>
         )}
       </Formik>
-    </Container>
+      <p>
+        You do not have an account? <Link to="/register">Register</Link>
+      </p>
+      <button onClick={dispatch(logout)}>Logout</button>
+    </div>
   );
 };
 

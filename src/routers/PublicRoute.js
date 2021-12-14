@@ -1,8 +1,5 @@
-import { Navigate } from "react-router-dom"
+import { Navigate } from "react-router-dom";
 
-export const PublicRoute = ({isAuthenticated, children}) => {
-
-    return  !isAuthenticated
-    ? children
-    : <Navigate to="/*"/>
-}
+export const PublicRoute = ({ auth, children }) => {
+  return !auth ? children : <Navigate to="/*" />;
+};
