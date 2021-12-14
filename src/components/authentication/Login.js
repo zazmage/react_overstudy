@@ -8,7 +8,7 @@ const Login = () => {
   const auth = useSelector((state) => state.auth.user);
   const dispatch = useDispatch();
 
-  console.log("estado:", auth);
+  // console.log("estado:", auth);
   return (
     <div>
       <Formik
