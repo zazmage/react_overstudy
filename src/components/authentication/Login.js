@@ -1,15 +1,36 @@
 import { Formik, Form, ErrorMessage } from "formik";
 import { useDispatch } from "react-redux";
-import { loginEmailPassword } from "../../app/slices/authSlice";
+import { loginEmailPassword, loginGoogle } from "../../app/slices/authSlice";
 import { Link } from "react-router-dom";
 import * as yup from "yup";
 import { GenericForm, NormalButton, NormInput } from "../../styles/StyledComp";
+import googleIcon from "../../assets/btn_google_light_normal_ios.svg";
+import styled from "styled-components";
+
+const LoginGoogleLogo = styled.div`
+  display: flex;
+  align-items: center;
+  background-color: white;
+  font-family: roboto;
+  font-weight: 600;
+  padding-right: 5px;
+  border-radius: 4px;
+  transition: 0.1s;
+  &:active {
+    background-color: #4285f4;
+    transform: scale(0.9);
+  }
+`;
 
 const Login = () => {
   const dispatch = useDispatch();
   return (
     <GenericForm>
       <div className="form-cont">
+        <LoginGoogleLogo onClick={() => dispatch(loginGoogle())}>
+          <img src={googleIcon} alt="Google Icon" />
+          <p>Sign in with Google</p>
+        </LoginGoogleLogo>
         <Formik
           className="form-cont"
           initialValues={{

@@ -63,6 +63,10 @@ export const GenericContainer = styled.div`
   width: 90%;
   border: solid 5px ${colors.secLight};
   border-radius: 10px;
+  h1,
+  h2 {
+    text-align: center;
+  }
 `;
 
 export const NormalButton = styled.button`

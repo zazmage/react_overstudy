@@ -1,13 +1,16 @@
 import { useDispatch } from "react-redux";
 import { logout } from "../app/slices/authSlice";
+import { GenericContainer, NormalButton } from "../styles/StyledComp";
+import NavigationBar from "./NavigationBar";
 
 const UserInfo = () => {
   const dispatch = useDispatch();
   return (
-    <div>
-      <h2>Soy un user Info</h2>
-      <button onClick={dispatch(logout)}>Logout</button>
-    </div>
+    <GenericContainer>
+      <h2>User Info</h2>
+      <NavigationBar />
+      <NormalButton onClick={dispatch(logout)}>Logout</NormalButton>
+    </GenericContainer>
   );
 };
 

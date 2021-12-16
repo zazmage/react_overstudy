@@ -1,8 +1,12 @@
+import { GenericContainer } from "../styles/StyledComp";
+import NavigationBar from "./NavigationBar";
+
 const Statistics = () => {
   return (
-    <div>
-      <h2>Soy un statistics</h2>
-    </div>
+    <GenericContainer>
+      <h2>Statistics</h2>
+      <NavigationBar />
+    </GenericContainer>
   );
 };
 

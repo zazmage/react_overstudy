@@ -46,11 +46,14 @@ export const loginEmailPassword = (email, password) => (dispatch) => {
     });
 };
 
-export const loginGoogle = () => {
+export const loginGoogle = () => (dispatch) => {
   const auth = getAuth();
   signInWithPopup(auth, authGoogle)
     .then(({ user }) => {
       console.log("Welcome " + (user.displayName || user.email));
+      dispatch(
+        setUser({ name: user.displayName, email: user.email, uid: user.uid })
+      );
     })
     .catch((e) => {
       console.log(e);
