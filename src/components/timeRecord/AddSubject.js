@@ -1,21 +1,45 @@
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik, Form, ErrorMessage } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import * as yup from "yup";
 import { useState } from "react";
 import { addSubject } from "../../app/slices/recordSlice";
+import { NormalButton, NormInput } from "../../styles/StyledComp";
+import styled from "styled-components";
+import colors from "../../styles/colors";
+
+const SmallForm = styled.div`
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  gap: 15px;
+  form {
+    width: 50vw;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    gap: 5px;
+    div {
+      display: flex;
+      flex-flow: column nowrap;
+      align-items: center;
+      p {
+        color: ${colors.priDark};
+      }
+    }
+  }
+`;
 
 const AddActivity = () => {
   const { user } = useSelector((state) => state.auth);
   const [showAddSubject, setShowAddSubject] = useState(false);
   const dispatch = useDispatch();
   return (
-    <div>
-      <button onClick={() => setShowAddSubject(!showAddSubject)}>
+    <SmallForm>
+      <NormalButton onClick={() => setShowAddSubject(!showAddSubject)}>
         Add subject
-      </button>
+      </NormalButton>
       {showAddSubject && (
         <>
-          <h2>Add subject</h2>
           <Formik
             initialValues={{
               subject: "",
@@ -34,7 +58,7 @@ const AddActivity = () => {
               <Form>
                 <div>
                   <label>
-                    <Field
+                    <NormInput
                       className="form-control"
                       type="text"
                       id="subject"
@@ -49,7 +73,7 @@ const AddActivity = () => {
                 </div>
                 <div>
                   <label>
-                    <Field
+                    <NormInput
                       className="form-control"
                       type="text"
                       id="topic"
@@ -62,13 +86,13 @@ const AddActivity = () => {
                     component={(errors) => <p>{errors.children}</p>}
                   />
                 </div>
-                <button type="submit">Save</button>
+                <NormalButton type="submit">Save</NormalButton>
               </Form>
             )}
           </Formik>
         </>
       )}
-    </div>
+    </SmallForm>
   );
 };
 

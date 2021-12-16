@@ -1,6 +1,14 @@
 import { useEffect, useState } from "react";
+import styled from "styled-components";
 import ControlButtons from "./ControlButtons";
 import Timer from "./Timer";
+
+const StopWatchCont = styled.div`
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  gap: 10px;
+`;
 
 const StopWatch = ({
   props: { timeRecordData, setTimeRecordData, initialRecordState },
@@ -51,7 +59,7 @@ const StopWatch = ({
   };
 
   return (
-    <div className="stop-watch">
+    <StopWatchCont>
       <Timer time={time} />
       <ControlButtons
         active={isActive}
@@ -60,7 +68,7 @@ const StopWatch = ({
         handlePauseResume={handlePauseResume}
         handleReset={handleReset}
       />
-    </div>
+    </StopWatchCont>
   );
 };
 

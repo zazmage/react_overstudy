@@ -1,3 +1,11 @@
+import styled from "styled-components";
+import { StopWatchBtn } from "../../styles/StyledComp";
+
+const BtnCont = styled.div`
+  display: flex;
+  gap: 10px;
+`;
+
 const ControlButtons = ({
   active,
   isPaused,
@@ -9,14 +17,14 @@ const ControlButtons = ({
     <div>
       <div>
         {active ? (
-          <div>
-            <div onClick={handleReset}>Reset</div>
-            <div onClick={handlePauseResume}>
+          <BtnCont>
+            <StopWatchBtn onClick={handleReset}>Reset</StopWatchBtn>
+            <StopWatchBtn onClick={handlePauseResume}>
               {isPaused ? "Resume" : "Pause"}
-            </div>
-          </div>
+            </StopWatchBtn>
+          </BtnCont>
         ) : (
-          <div onClick={handleStart}>Start</div>
+          <StopWatchBtn onClick={handleStart}>Start</StopWatchBtn>
         )}
       </div>
     </div>

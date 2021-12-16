@@ -1,11 +1,20 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import styled from "styled-components";
 import {
   addRecord,
   getRecords,
   getSubjects,
 } from "../../app/slices/recordSlice";
+import { NormalButton, NormSelect } from "../../styles/StyledComp";
 import StopWatch from "./StopWatch";
+
+const RecordCont = styled.div`
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  gap: 10px;
+`;
 
 const initialRecordState = {
   startDate: "",
@@ -46,19 +55,19 @@ const RecordActivity = () => {
 
   const handleSendRecord = () => dispatch(addRecord(timeRecordData));
   return (
-    <div>
+    <RecordCont>
       {!subjects.length ? (
         <>
-          <select name="subject">
+          <NormSelect name="subject">
             <option value="noSelection">Select or add new subject</option>
-          </select>
-          <select name="topic">
+          </NormSelect>
+          <NormSelect name="topic">
             <option value="noSelection">Select or add new topic</option>
-          </select>
+          </NormSelect>
         </>
       ) : (
         <>
-          <select name="subject" onChange={handleChange}>
+          <NormSelect name="subject" onChange={handleChange}>
             <option value="noSelection">Select or add new subject</option>
             {subjects
               .filter(
@@ -71,8 +80,8 @@ const RecordActivity = () => {
                   {el.subject}
                 </option>
               ))}
-          </select>
-          <select name="topic" onChange={handleChange}>
+          </NormSelect>
+          <NormSelect name="topic" onChange={handleChange}>
             <option value="noSelection">Select or add new topic</option>
             {subjects
               .filter((el) => el.subject === timeRecordData.subject)
@@ -81,7 +90,7 @@ const RecordActivity = () => {
                   {el.topic}
                 </option>
               ))}
-          </select>
+          </NormSelect>
         </>
       )}
       <StopWatch
@@ -91,8 +100,8 @@ const RecordActivity = () => {
           initialRecordState,
         }}
       />
-      <button onClick={handleSendRecord}>Add record</button>
-    </div>
+      <NormalButton onClick={handleSendRecord}>Add record</NormalButton>
+    </RecordCont>
   );
 };
 
