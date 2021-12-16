@@ -27,8 +27,7 @@ const AppRouter = () => {
       }
     });
   }, [authStatus, dispatch]);
-  //console.log(auth);
-  //console.log("hola:", ready);
+
   return !ready ? (
     <h2>Loading...</h2>
   ) : (

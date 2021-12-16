@@ -1,14 +1,11 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { loginEmailPassword, logout } from "../../app/slices/authSlice";
 import { Link } from "react-router-dom";
 import * as yup from "yup";
 
 const Login = () => {
-  const auth = useSelector((state) => state.auth.user);
   const dispatch = useDispatch();
-
-  // console.log("estado:", auth);
   return (
     <div>
       <Formik
@@ -39,9 +36,7 @@ const Login = () => {
               </label>
               <ErrorMessage
                 name="email"
-                component={(errors) => (
-                  <p className="fs-6 text-danger">{errors.children}</p>
-                )}
+                component={(errors) => <p>{errors.children}</p>}
               />
             </div>
             <div>
@@ -56,9 +51,7 @@ const Login = () => {
               </label>
               <ErrorMessage
                 name="password"
-                component={(errors) => (
-                  <p className="fs-6 text-danger">{errors.children}</p>
-                )}
+                component={(errors) => <p>{errors.children}</p>}
               />
             </div>
             <button type="submit">Submit</button>

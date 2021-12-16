@@ -1,9 +1,11 @@
-/* import { NavLink } from "react-router-dom"; */
+import { NavLink } from "react-router-dom";
 
 const NavigationBar = () => {
   return (
     <div>
-      <h2>Soy NavBar</h2>
+      <NavLink to="/">Record Activity</NavLink>
+      <NavLink to="/statistics">Statistics</NavLink>
+      <NavLink to="/user">Profile</NavLink>
     </div>
   );
 };
